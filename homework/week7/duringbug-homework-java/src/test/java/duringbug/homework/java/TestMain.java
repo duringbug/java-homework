@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import duringbug.homework.java.socket.Config.ClinetType;
 import duringbug.homework.java.socket.Config.Config;
 import duringbug.homework.java.socket.Config.ServerType;
+import duringbug.homework.java.utils.TCP;
 
 public class TestMain {
     @Test

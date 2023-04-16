@@ -3,13 +3,14 @@
  * @Author: 唐健峰
  * @Date: 2023-04-16 20:50:50
  * @LastEditors: ${author}
- * @LastEditTime: 2023-04-16 20:50:52
+ * @LastEditTime: 2023-04-16 21:32:58
  */
 package duringbug.homework.java;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 
 public class TCPClient {
     private Socket clientSocket;
@@ -22,6 +23,8 @@ public class TCPClient {
 
     public void sendMessage(String msg) throws IOException { // 重复发送十次
         for (int i = 0; i < 10; i++) {
+            int length = msg.length();
+            out.write(ByteBuffer.allocate(4).putInt(length).array());
             out.write(msg.getBytes());
         }
     }

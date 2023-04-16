@@ -3,7 +3,7 @@
  * @Author: 唐健峰
  * @Date: 2023-04-16 20:49:57
  * @LastEditors: ${author}
- * @LastEditTime: 2023-04-16 20:56:00
+ * @LastEditTime: 2023-04-16 21:36:28
  */
 package duringbug.homework.java;
 
@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 
 public class TCPServer {
     private ServerSocket serverSocket;
@@ -24,11 +25,14 @@ public class TCPServer {
         clientSocket = serverSocket.accept();
         InputStream is = clientSocket.getInputStream();
         for (int i = 0; i < n; i++) {
-            byte[] bytes = new byte[BYTE_LENGTH];
+            byte[] header = new byte[4];
+            is.read(header);
+            int length = ByteBuffer.wrap(header).getInt();
+            byte[] data = new byte[length];
             // 读取客户端发送的信息
-            int cnt = is.read(bytes, 0, BYTE_LENGTH);
+            int cnt = is.read(data, 0, length);
             if (cnt > 0)
-                System.out.println("服务端已收到消息: " + new String(bytes).trim());
+                System.out.println("服务端已收到消息: " + new String(data).trim());
         }
         this.stop();
     }
