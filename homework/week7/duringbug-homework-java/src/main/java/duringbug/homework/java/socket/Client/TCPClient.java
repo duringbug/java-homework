@@ -9,8 +9,8 @@ public class TCPClient {
     private PrintWriter out;
     private BufferedReader in;
 
-    public void startConnection(String ip, int port) throws IOException { // 1. 创建客户端Socket，指定服务器地址，端口
-        clientSocket = new Socket(ip, port);
+    public void startConnection(String host, int port) throws IOException { // 1. 创建客户端Socket，指定服务器地址，端口
+        clientSocket = new Socket(host, port);
         // 2. 获取输入输出流
         out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(),
                 StandardCharsets.UTF_8), true);

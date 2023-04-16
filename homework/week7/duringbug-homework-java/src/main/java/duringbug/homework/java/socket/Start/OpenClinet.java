@@ -13,15 +13,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import duringbug.homework.java.socket.Client.TCPClient;
+import duringbug.homework.java.socket.Start.Interface.StartClinet;
 
-public class StartClinet implements Runnable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(StartClinet.class);
+public class OpenClinet implements StartClinet {
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpenClinet.class);
 
     TCPClient tcpClient;
     int port;
     String host;
 
-    public StartClinet(int port, String host) {
+    public OpenClinet(int port, String host) {
         tcpClient = new TCPClient();
         this.port = port;
         this.host = host;
